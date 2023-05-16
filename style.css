@@ -1,0 +1,13 @@
+
+body {
+    background-image: url("./img/selva_background.avif");
+    background-size: cover;
+}
+
+#imagen {
+    position: absolute;
+    top: 200px;
+    left: 400px;
+    cursor: pointer;
+  }
+

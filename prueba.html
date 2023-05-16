@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Juego para calcular el tiempo de detección de una imagen</title>
+  <style>
+    body {
+      background-image: url('./img/selva_background.avif');
+      background-size: cover;
+    }
+
+    .imagen {
+      display: none;
+      position: absolute;
+      top: 200px;
+      left: 400px;
+      cursor: pointer;
+    }
+
+    #imagen1 {
+      left: 400px;
+    }
+
+    #imagen2 {
+      left: 600px;
+    }
+  </style>
+</head>
+<body>
+  <img id="imagen1" class="imagen" src="./img/gorilla.png" alt="Descripción de la primera imagen">
+  <img id="imagen2" class="imagen" src="./img/gorilla.png" alt="Descripción de la segunda imagen">
+
+  <form id="tiempoForm" method="post" action="procesar_tiempo.php">
+    <input type="hidden" name="tiempo" id="tiempoInput">
+  </form>
+  
+  <script>
+    var startTime;
+    var endTime;
+    var totalTime;
+
+    var imagenes = document.querySelectorAll(".imagen");
+
+    function aparecerImagen() {
+      startTime = new Date();
+      var imagenSeleccionada = imagenes[Math.floor(Math.random() * imagenes.length)];
+      imagenSeleccionada.style.display = "block";
+      setTimeout(aparecerImagen, Math.random() * 10000);
+    }
+
+    setTimeout(aparecerImagen, Math.random() * 10000);
+
+    for (var i = 0; i < imagenes.length; i++) {
+      imagenes[i].addEventListener("click", function() {
+        if (startTime !== undefined) {
+          endTime = new Date();
+          totalTime = (endTime - startTime) / 1000;
+          alert("¡Encontraste la imagen en " + totalTime + " segundos!");
+          startTime = undefined;
+          this.style.display = "none";
+        } else {
+          alert("La imagen aún no ha aparecido.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Reaccion</title>
+</head>
+<body>
+    <img id="imagen" src="./img/selva_background.avif" alt="background">
+
+    <script>
+        var startTime;
+        var endTime;
+        var totalTime;
+    
+        var imagen = document.getElementById("imagen");
+    
+        function aparecerImagen() {
+          imagen.style.display = "block";
+        }
+    
+        setTimeout(aparecerImagen, Math.random() * 10000);
+    
+        imagen.addEventListener("click", function() {
+          if (startTime !== undefined) {
+            endTime = new Date();
+            totalTime = (endTime - startTime) / 1000;
+            alert("¡Encontraste la imagen en " + totalTime + " segundos!");
+            startTime = undefined;
+            imagen.style.display = "none";
+            setTimeout(aparecerImagen, Math.random() * 10000);
+          } else {
+            alert("La imagen aún no ha aparecido.");
+          }
+        });
+    
+      </script>
+      
+</body>
+</html>
